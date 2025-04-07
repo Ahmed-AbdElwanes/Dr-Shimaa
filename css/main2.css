@@ -55,7 +55,7 @@ ul {
 /* header */
 header {
   background: #16171a;
-  padding: 15px 20px;
+  padding: 20px 20px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -159,7 +159,7 @@ nav a:hover {
   background-color: #fff;
   background-color: #161516;
   width: 100%;
-  height: calc(100vh - 52px);
+  height: calc(100vh - 64px);
   margin: 0 auto 0;
   border-top: 1px solid #707070;
 }
@@ -170,24 +170,31 @@ nav a:hover {
 }
 
 .record .info img {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  max-width: 340px;
+  height: 330px;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+
 .record .info h3 {
   color: #0c82ff;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 .record .info p {
   color: #ffffff;
   font-weight: 500;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
+@media (max-height: 690px) {
+  .record .info img {
+    height: 280px;
+  }
+}
 /* audio */
 .record .audio {
   width: 100%;
@@ -231,7 +238,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .timer {
   position: relative;
-  margin-bottom: 5px;
+  margin-block: 15px;
 }
 .time {
   display: flex;
@@ -245,12 +252,12 @@ input[type="range"]::-moz-range-thumb {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 .playList .play-pause {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -278,11 +285,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* translate */
-i[id="prev"] {
-  color: white;
-}
+
+i[id="prev"],
 i[id="next"] {
   color: white;
+  font-size: 30px;
 }
 i[id="prev"]:hover,
 i[id="next"]:hover {
@@ -350,4 +357,11 @@ i[id="next"]:hover {
   position: absolute;
   z-index: 10;
   /* display: none; */
+}
+
+@media (min-height: 860px) {
+  .record .info img {
+    height: 350px;
+    margin: 30px auto 30px;
+  }
 }
