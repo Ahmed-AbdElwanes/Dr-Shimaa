@@ -3,13 +3,13 @@ let allRecord = [
     name: "Azan",
     artist: "Fourth Singer",
     img: "images/4.jpg",
-    src: "../records/1.mp3"
+    src: "./records/1.mp3"
   },
   {
     name: "quraan1",
     artist: "sh-Mashary",
     img: "images/2.jpg",
-    src: "../records/2.mp3"
+    src: "./records/2.mp3"
   }
   // {
   //   name: "Record 1",
