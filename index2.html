@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Records</title>
+    <!-- main css file  -->
+    <link rel="stylesheet" href="css/main2.css" />
+    <!-- render all elements  -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- file font awesome  -->
+    <!-- google iocns -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <!--  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- google fonts -->
+    <!-- main css -->
+    <!-- <link rel="stylesheet" href="css/main.css" /> -->
+  </head>
+  <!--  -->
+  <body>
+    <header>
+      <div class="logo">
+        <a href="index.html">Dr. Shamekh</a>
+      </div>
+      <!-- <nav>
+        <a href="index.html">Home</a>
+      </nav> -->
+      <!-- <div class="hamburger" onclick="toggleMenu()">☰</div> -->
+    </header>
+    <div class="form">
+      <div class="email">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+
+      <div class="pass">
+        <label for="pass">password</label>
+        <input type="password" name="pass" id="pass" />
+      </div>
+      <button>Send</button>
+    </div>
+    <!-- view -->
+    <div class="view"></div>
+    <!-- , -->
+
+    <div class="record" style="display: none">
+      <!-- records Table -->
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Recorde</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="player">
+        <div class="info">
+          <img
+            src="https://st5.depositphotos.com/29094582/67508/i/450/depositphotos_675082518-stock-photo-cartoon-headphones-play-symbol-sound.jpg"
+            alt=""
+          />
+          <h3>Record Name</h3>
+          <p>Maker: Dr-Shimaa</p>
+        </div>
+        <!-- the audio -->
+        <div class="audio">
+          <audio id="main-audio" src=""></audio>
+          <input type="range" id="myRange" min="0" value="0" step="0.01" />
+        </div>
+        <!-- time -->
+        <div class="timer">
+          <div class="time">
+            <span class="duration">0:00</span>
+            <span class="currentTime">00:00</span>
+          </div>
+          <!-- Time back -->
+          <div class="contTime">
+            <!-- <label for="speedControl">سرعة التشغيل:</label> -->
+            <select name="" id="speedControl">
+              <option value="0.5">0.5x</option>
+              <option value="1" selected>1x</option>
+              <option value="1.5">1.5x</option>
+              <option value="1.7">1.7x</option>
+              <option value="2">2x</option>
+            </select>
+          </div>
+        </div>
+        <!-- play -->
+        <div class="playList">
+          <i id="prev" class="material-icons">skip_previous</i>
+          <div class="play-pause">
+            <i class="material-icons play">play_arrow</i>
+          </div>
+          <i id="next" class="material-icons">skip_next</i>
+        </div>
+      </div>
+    </div>
+    <!-- , -->
+
+    <!--  -->
+    <!-- notification -->
+    <!-- <audio id="audio" src="./records/4.mp3" loop></audio>
+    <button id="play">تشغيل الصوت</button>
+    <button id="stop">إيقاف الصوت</button> -->
+
+    <!-- <script>
+      const audio = document.getElementById("audio");
+
+      document.getElementById("play").addEventListener("click", () => {
+        audio.play();
+        showNotification();
+      });
+
+      document.getElementById("stop").addEventListener("click", () => {
+        audio.pause();
+        audio.currentTime = 0; // إعادة تعيين الصوت
+        closeNotification();
+      });
+
+      function showNotification() {
+        if (Notification.permission === "granted") {
+          new Notification("الصوت قيد التشغيل", {
+            body: "يمكنك التحكم في الصوت من التطبيق.",
+            icon: "path/to/icon.png" // أيقونة الإشعار
+          });
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              showNotification();
+            }
+          });
+        }
+      }
+
+      function closeNotification() {
+        // يمكنك إضافة كود لإغلاق الإشعار إذا كان ذلك ممكنًا
+      }
+    </script> -->
+  </body>
+  <script src="js/list.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/audio.js"></script>
+  <!-- <script>
+    function toggleMenu() {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("active");
+    }
+  </script> -->
+</html>

@@ -1,0 +1,353 @@
+/* start glopal ruls  */
+:root {
+  --main-color: rgb(63, 145, 253);
+  --second-color: rgb(50, 23, 201);
+  --blue-color: #0075ff;
+  --blue-alt-color: #0d69d5;
+  --orange-color: #f59e0b;
+  --green-color: #22c55e;
+  --red-color: #f44336;
+  --grey-color: #888;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+/* hide selection  */
+* ::selection {
+  background-color: inherit;
+  color: inherit;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--blue-alt-color);
+}
+/* header */
+header {
+  background: #16171a;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.logo a {
+  color: var(--main-color);
+  font-size: 1.3em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+nav {
+  display: flex;
+}
+nav a {
+  color: var(--main-color);
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+.logo:hover a,
+nav a:hover {
+  color: #20a1f7;
+  transform: scale(1.05);
+}
+/* header */
+/* end glopal rules */
+.form {
+  padding: 20px 25px 20px;
+  background-color: #eee;
+  background-color: #fff;
+  max-width: 400px;
+  margin: 100px auto 0;
+  box-shadow: 0px 5px 6px 3px #bdbdbd;
+  border-top: 2px solid #ddd;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+.form .email {
+  margin-bottom: 20px;
+}
+
+.form label {
+  color: #777;
+}
+.form input {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px 10px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.form button {
+  width: 100%;
+  background-color: #0075ff;
+  border: none;
+  padding: 10px 0;
+  margin-top: 15px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+/* audio {
+  margin-top: 100px;
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection {
+  color: inherit;
+  background-color: inherit;
+}
+/* body {
+
+} */
+/* info */
+.player {
+  position: relative;
+  padding: 15px;
+  background-color: #fff;
+  background-color: #161516;
+  width: 100%;
+  height: calc(100vh - 52px);
+  margin: 0 auto 0;
+  border-top: 1px solid #707070;
+}
+.record .info {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.record .info img {
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.record .info h3 {
+  color: #0c82ff;
+  margin: 10px 0;
+}
+.record .info p {
+  color: #ffffff;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+/* audio */
+.record .audio {
+  width: 100%;
+}
+.record .audio input {
+  width: 100%;
+  background-color: #80d0ff;
+  margin-left: 0;
+}
+/* range */
+input[type="range"] {
+  /* -webkit-appearance: none; */
+  height: 5px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* إزالة المظهر الافتراضي */
+  appearance: none; /* إزالة المظهر الافتراضي */
+  width: 12px; /* عرض المقبض */
+  height: 12px; /* ارتفاع المقبض */
+  background: rgb(63, 128, 250); /* لون المقبض */
+  border-radius: 50%; /* شكل دائري */
+  cursor: pointer; /* شكل المؤشر */
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  width: 15px; /* عرض المقبض */
+  height: 15px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 200px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.timer {
+  position: relative;
+  margin-bottom: 5px;
+}
+.time {
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 2px;
+}
+
+.playList {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.playList .play-pause {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: background 0.3s ease;
+  -webkit-transition: background 0.3s ease;
+  -moz-transition: background 0.3s ease;
+  -ms-transition: background 0.3s ease;
+  -o-transition: background 0.3s ease;
+  color: rgb(0, 0, 0);
+}
+.playList .play-pause:hover {
+  /* background: #4281e0; */
+  background: linear-gradient(
+    90deg,
+    rgb(16, 9, 155),
+    rgb(71, 71, 252),
+    rgb(29, 156, 182)
+  );
+}
+.playList i {
+  cursor: pointer;
+}
+
+/* translate */
+i[id="prev"] {
+  color: white;
+}
+i[id="next"] {
+  color: white;
+}
+i[id="prev"]:hover,
+i[id="next"]:hover {
+  color: #007bff;
+}
+
+/* translate */
+/* audio style */
+/*the speed */
+.contTime label {
+  font-size: 18px;
+  margin-right: 10px;
+  direction: rtl;
+}
+
+.contTime select {
+  position: absolute;
+  top: 4px;
+  right: 50px;
+  padding: 3px 0px 2px 5px;
+  font-family: "Rubik", serif;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  appearance: none; /*لإزالةالسهم*/
+  -webkit-appearance: none; /*لإزالةالسهمفيSafari*/
+  -moz-appearance: none; /*لإزالةالسهمفيFirefox*/
+  transition: 0.3s;
+}
+.contTime select:hover {
+  outline: none;
+  border: 1px solid #bebebe;
+}
+
+.contTime select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.contTime option {
+  color: #777;
+  background-color: #f1f1f12d;
+  filter: blur(1);
+  border: none;
+}
+
+/*the speed */
+
+.table {
+  position: absolute;
+  z-index: 1;
+  /* top: 20px; */
+}
+.table tr {
+  display: block;
+  margin: 15px;
+}
+.table tr th,
+.table tr td {
+  padding-inline: 20px;
+}
+.player {
+  position: absolute;
+  z-index: 10;
+  /* display: none; */
+}
