@@ -5,8 +5,8 @@ let email = document.getElementById("email");
 let pass = document.getElementById("pass");
 let send = document.querySelector(".form button");
 
-// window.localStorage.setItem("email", "Shamekh1@gmail");
-// window.localStorage.setItem("pass", "Shamekh@10c");
+window.localStorage.setItem("email", "Shamekh1@gmail");
+window.localStorage.setItem("pass", "Shamekh@10c");
 
 // gitenig from local
 let storEmail = window.localStorage.getItem("email");
