@@ -90,6 +90,7 @@ nav a:hover {
 }
 .hero p {
   font-size: 1.4em;
+  color: #e4e4e4;
   margin-bottom: 30px;
   animation: fadeInUp 2s ease-out;
 }
@@ -315,4 +316,97 @@ footer > a {
   footer {
     padding: 30px 15px;
   }
+}
+
+/* edit text animation */
+/* 
+  these type the CSS variable as color
+  unlocking the ability for the browser 
+  to animate just that portion
+*/
+@property --＠color-1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(0, 0%, 100%);
+}
+
+@property --＠color-2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(226, 100%, 50%);
+}
+
+/* keyframes that change the color variable */
+@keyframes gradient-change {
+  to {
+    --＠color-1: hsl(210, 100%, 48%);
+    --＠color-2: hsl(0, 0%, 40%);
+  }
+}
+
+article {
+  /* apply variable changes over time */
+  animation: gradient-change 2s linear infinite alternate;
+
+  background: linear-gradient(
+    /* 
+      in oklch produces more vibrant gradient results 
+      learn more https://developer.chrome.com/docs/css-ui/access-colors-spaces#color_interpolation
+    */
+      to right in oklch,
+    /* use the variables in a gradient (or wherever!) */ var(--＠color-1),
+    var(--＠color-2)
+  );
+
+  /* old browser support */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* modern browser version */
+  background-clip: text;
+  color: transparent;
+}
+
+@layer demo.support {
+  h1.animatText {
+    font-size: 10vmin;
+    line-height: 1.1;
+  }
+
+  /* body {
+    background: hsl(204 100% 5%);
+
+    min-block-size: 100%;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+
+    font-family: system-ui, sans-serif;
+    font-size: min(200%, 4vmin);
+
+    padding: 5vmin;
+  } */
+
+  h1.animatText {
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h1.animatText {
+    line-height: 1.25cap;
+  }
+
+  /* p {
+    font-family: "Dank Mono", ui-monospace, monospace;
+  } */
+  /* 
+  html {
+    block-size: 100%;
+  } */
+
+  /* article {
+    display: grid;
+    gap: 1lh;
+    text-align: center;
+  } */
 }
