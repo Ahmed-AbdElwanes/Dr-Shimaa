@@ -161,7 +161,39 @@ nav a:hover {
   height: calc(100vh - 64px);
   margin: 0 auto 0;
   border-top: 1px solid #707070;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
 }
+.cursore {
+  color: #4ca1fc;
+  font-size: 20px;
+  margin-left: auto;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.cursore i {
+  color: #4ca1fc;
+}
+/*  */
+.smallPlayer {
+  height: 150px;
+  overflow: hidden;
+  bottom: 20px;
+  .audio,
+  .info {
+    display: none;
+  }
+  .timer {
+    margin: 0;
+  }
+  .playList {
+    padding: 0;
+  }
+}
+/*  */
 .record .info {
   text-align: center;
   padding: 20px;

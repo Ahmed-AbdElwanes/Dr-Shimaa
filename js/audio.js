@@ -1,5 +1,9 @@
 console.log(allRecord[1]);
 // var
+// for show table records br arrow
+const player = document.querySelector(".player");
+const arrowDown = document.querySelector(".cursore");
+//
 const audio = document.querySelector(".audio audio");
 let h3 = document.querySelector(".record h3");
 let range = document.querySelector(".record input");
@@ -147,3 +151,21 @@ speedControl.addEventListener("change", function () {
 audio.addEventListener("contextmenu", (e) => {
   e.preventDefault(); // منع قائمة السياق
 });
+
+// new
+// arrow showing recoeds table [arrowDown , player]
+
+arrowDown.addEventListener("click", controlSize);
+
+let down = false;
+function controlSize() {
+  if (down === false) {
+    player.classList = "player smallPlayer";
+    down = true;
+  } else {
+    player.classList = "player";
+    down = false;
+  }
+
+  console.log("eeee");
+}
