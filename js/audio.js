@@ -175,12 +175,8 @@ function controlSize() {
 // ---- the last code from Ai grok
 async function checkHeadphones() {
   try {
-    // التحقق من دعم navigator.mediaDevices لضمان التوافق مع المتصفحات
-    if (
-      !navigator.mediaDevices ||
-      !navigator.mediaDevices.getUserMedia ||
-      !navigator.mediaDevices.enumerateDevices
-    ) {
+    // التحقق من دعم navigator.mediaDevices
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
       console.error("واجهة navigator.mediaDevices غير مدعومة.");
       return {
         connected: false,
@@ -188,7 +184,7 @@ async function checkHeadphones() {
       };
     }
 
-    // التحقق من تشغيل الصفحة في بيئة آمنة (HTTPS أو localhost)
+    // التحقق من HTTPS أو localhost
     if (location.protocol !== "https:" && location.hostname !== "localhost") {
       console.error("الصفحة ليست على HTTPS أو localhost.");
       return {
@@ -197,15 +193,31 @@ async function checkHeadphones() {
       };
     }
 
-    // طلب إذن الوصول إلى الميكروفون (يتم تشغيله في سياق تفاعلي عند النقر)
+    // محاولة جرد الأجهزة بدون طلب إذن مباشر
+    console.log("جارٍ التحقق من الأجهزة المتاحة...");
+    let devices = await navigator.mediaDevices.enumerateDevices();
+    const audioInputDevices = devices.filter(
+      (device) => device.kind === "audioinput"
+    );
+
+    if (audioInputDevices.length === 0) {
+      console.warn("لم يتم العثور على ميكروفون متاح.");
+      return {
+        connected: false,
+        message:
+          "لم يتم العثور على ميكروفون متاح. يرجى توصيل ميكروفون أو التحقق من إعدادات الجهاز."
+      };
+    }
+
+    // طلب إذن الوصول إلى الميكروفون إذا كان هناك ميكروفون
     console.log("جارٍ طلب إذن الوصول إلى الميكروفون...");
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-    // الحصول على قائمة الأجهزة المتصلة بعد الموافقة على الإذن
+    // جرد الأجهزة بعد الموافقة على الإذن
     console.log("جارٍ جرد الأجهزة...");
-    const devices = await navigator.mediaDevices.enumerateDevices();
+    devices = await navigator.mediaDevices.enumerateDevices();
 
-    // إغلاق تدفق الميكروفون فورًا لتجنب الاستخدام المستمر
+    // إغلاق تدفق الميكروفون فورًا
     stream.getTracks().forEach((track) => track.stop());
     console.log("تم إغلاق تدفق الميكروفون.");
 
@@ -222,25 +234,24 @@ async function checkHeadphones() {
       };
     }
 
-    // التحقق من وجود سماعات أذن بناءً على التسمية
+    // التحقق من وجود سماعات رأس
     const hasHeadphones = audioOutputDevices.some((device) => {
       const label = device.label.toLowerCase();
       return (
         label.includes("headphone") ||
         label.includes("earphone") ||
         label.includes("headset") ||
-        label.includes("bluetooth") // لدعم أجهزة بلوتوث
+        label.includes("bluetooth")
       );
     });
 
     return {
       connected: hasHeadphones,
       message: hasHeadphones
-        ? "سماعات الأذن متصلة!"
-        : "تم العثور على أجهزة إخراج صوت، لكنها ليست سماعات أذن."
+        ? "سماعات الرأس متصلة!"
+        : "تم العثور على أجهزة إخراج صوت، لكنها ليست سماعات رأس."
     };
   } catch (error) {
-    // معالجة جميع أنواع الأخطاء المحتملة
     console.error("خطأ أثناء التحقق من السماعات:", error);
     if (error.name === "NotAllowedError") {
       return {
@@ -251,7 +262,8 @@ async function checkHeadphones() {
     } else if (error.name === "NotFoundError") {
       return {
         connected: false,
-        message: "لم يتم العثور على ميكروفون متاح. تحقق من إعدادات الجهاز."
+        message:
+          "لم يتم العثور على ميكروفون متاح. يرجى توصيل ميكروفون أو التحقق من إعدادات الجهاز."
       };
     } else if (error.name === "NotReadableError") {
       return {
@@ -268,23 +280,23 @@ async function checkHeadphones() {
   }
 }
 
-// إنشاء واجهة مستخدم
+// واجهة مستخدم
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.createElement("div");
   container.style.textAlign = "center";
   container.style.margin = "20px";
   container.style.fontFamily = "Arial, sans-serif";
 
-  // تعليمات للمستخدم لتوضيح الحاجة إلى الإذن
+  // تعليمات للمستخدم
   const instruction = document.createElement("p");
   instruction.textContent =
-    "انقر على الزر أدناه للتحقق مما إذا كانت سماعات الأذن متصلة. ستحتاج إلى السماح بإذن الوصول إلى الميكروفون.";
+    "انقر على الزر أدناه للتحقق مما إذا كانت سماعات الرأس متصلة. ستحتاج إلى ميكروفون متاح والسماح بإذن الوصول إليه.";
   instruction.style.marginBottom = "15px";
   instruction.style.color = "#333";
 
   // زر التحقق
   const checkButton = document.createElement("button");
-  checkButton.textContent = "تحقق من سماعات الأذن";
+  checkButton.textContent = "تحقق من سماعات الرأس";
   checkButton.style.padding = "12px 24px";
   checkButton.style.fontSize = "16px";
   checkButton.style.backgroundColor = "#007bff";
@@ -304,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
   resultDiv.style.fontSize = "18px";
   resultDiv.style.fontWeight = "bold";
 
-  // معالجة النقر على الزر (يضمن سياقًا تفاعليًا لطلب الإذن)
+  // معالجة النقر على الزر
   checkButton.onclick = async () => {
     resultDiv.textContent = "جارٍ التحقق...";
     resultDiv.style.color = "#333";
