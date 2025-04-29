@@ -1,15 +1,15 @@
 let allRecord = [
   {
-    name: "Azan",
-    artist: "Fourth Singer",
+    name: "اداري 1",
+    artist: "Dr.Shimaa",
     img: "images/4.jpg",
-    src: "./records/1.mp3"
+    src: "./records/1.m4a"
   },
   {
-    name: "quraan1",
-    artist: "sh-Mashary",
+    name: "اداري 2",
+    artist: "Dr.Shimaa",
     img: "images/2.jpg",
-    src: "./records/2.mp3"
+    src: "./records/2.m4a"
   },
   {
     name: "اداري 3",

@@ -176,6 +176,11 @@ nav a:hover {
 }
 .cursore i {
   color: #4ca1fc;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
 }
 /*  */
 .smallPlayer {
@@ -191,6 +196,13 @@ nav a:hover {
   }
   .playList {
     padding: 0;
+  }
+  .cursore i {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
   }
 }
 /*  */
@@ -376,13 +388,34 @@ i[id="next"]:hover {
   z-index: 1;
   /* top: 20px; */
 }
+.table thead {
+  display: block;
+  padding-block: 15px;
+}
+.subjecName {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #6b6b6b;
+}
 .table tr {
   display: block;
-  margin: 15px;
+  margin-inline: 15px;
+}
+
+.table tbody tr {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cfcfcf;
+}
+.table tbody tr:hover {
+  background-color: #eee;
 }
 .table tr th,
 .table tr td {
-  padding-inline: 20px;
+  /* padding-inline: 20px; */
+  min-width: 200px;
+  text-align: start;
 }
 .player {
   position: absolute;

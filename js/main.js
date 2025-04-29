@@ -48,7 +48,10 @@ send.addEventListener("click", () => {
 
 // Table Of Records
 let tbody = document.querySelector(".table tbody");
-
+const subjecName = document.createElement("p");
+subjecName.className = "subjecName";
+subjecName.innerText = "administrative";
+tbody.appendChild(subjecName);
 for (rec of allRecord) {
   console.log(rec);
   let tr = document.createElement("tr");
