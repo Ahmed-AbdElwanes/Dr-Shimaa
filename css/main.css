@@ -233,6 +233,43 @@ footer > a {
   color: white;
   text-shadow: 2px -1px 4px #bbbbbb;
 }
+
+/* start icons telegr */
+footer .teleg {
+  display: flex;
+  margin-bottom: 10px;
+}
+footer .links li {
+  border-bottom: 1px solid #444;
+  width: fit-content;
+  list-style: none;
+}
+footer .links :last-child {
+  border: none;
+}
+footer .links li a {
+  display: inline-block;
+  width: 200px;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  color: #2196f3;
+  font-size: 18px;
+}
+footer .teleg .imgContain {
+  flex: 1;
+
+  align-content: center;
+
+  img {
+    display: block;
+    width: 80%;
+    height: 130px;
+    margin-left: auto;
+  }
+}
+/* end icons telegr */
 /* Animations */
 @keyframes fadeInDown {
   from {
