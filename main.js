@@ -134,22 +134,3 @@ window.addEventListener("load", function () {
 // }
 
 // let form = form2.
-
-console.log("البيانات:");
-import { get } from "axios";
-
-// رابط الـ API
-const url = "https://records-18de7-default-rtdb.firebaseio.com/1/record3.json";
-
-// دالة لجلب البيانات
-async function fetchData() {
-  try {
-    const response = await get(url);
-    console.log("البيانات:", response.data);
-  } catch (error) {
-    console.error("حدث خطأ:", error);
-  }
-}
-console.log("البيانات:");
-// استدعاء الدالة
-fetchData();

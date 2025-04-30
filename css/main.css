@@ -229,10 +229,6 @@ footer .social-icons p {
   color: #ddd;
   padding: 10px;
 }
-footer > a {
-  color: white;
-  text-shadow: 2px -1px 4px #bbbbbb;
-}
 
 /* start icons telegr */
 footer .teleg {
@@ -270,6 +266,30 @@ footer .teleg .imgContain {
   }
 }
 /* end icons telegr */
+/* start numbers */
+footer .numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  i {
+    color: rgb(0, 230, 0);
+  }
+}
+
+/* start numbers */
+/* start bottom footer */
+footer .rights {
+  padding: 5px;
+  background-color: #1a1a1a;
+  border-top: 1px solid #444444;
+}
+footer .rights a {
+  color: white;
+  text-shadow: 2px -1px 2px #777777;
+}
+/* end bottom footer */
 /* Animations */
 @keyframes fadeInDown {
   from {
@@ -410,20 +430,6 @@ article {
     line-height: 1.1;
   }
 
-  /* body {
-    background: hsl(204 100% 5%);
-
-    min-block-size: 100%;
-    box-sizing: border-box;
-    display: grid;
-    place-content: center;
-
-    font-family: system-ui, sans-serif;
-    font-size: min(200%, 4vmin);
-
-    padding: 5vmin;
-  } */
-
   h1.animatText {
     margin: 0;
     text-wrap: balance;
@@ -432,18 +438,4 @@ article {
   h1.animatText {
     line-height: 1.25cap;
   }
-
-  /* p {
-    font-family: "Dank Mono", ui-monospace, monospace;
-  } */
-  /* 
-  html {
-    block-size: 100%;
-  } */
-
-  /* article {
-    display: grid;
-    gap: 1lh;
-    text-align: center;
-  } */
 }
