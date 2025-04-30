@@ -266,6 +266,20 @@ footer .teleg .imgContain {
     margin-left: auto;
   }
 }
+@media (min-width: 796px) {
+  footer .teleg .imgContain img {
+    width: 60%;
+    height: 180px;
+  }
+  footer .links li a {
+    width: 300px;
+  }
+}
+@media (min-width: 1200px) {
+  footer .teleg .imgContain img {
+    width: 40%;
+  }
+}
 /* end icons telegr */
 /* start numbers */
 footer .numbers {
