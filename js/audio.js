@@ -167,3 +167,86 @@ function controlSize() {
     down = false;
   }
 }
+// http://apidemo.runasp.net/api/LocalOpen
+// contact with Api LocalOpen
+async function getLocalOpen() {
+  try {
+    const response = await fetch("http://apidemo.runasp.net/api/LocalOpen", {
+      method: "GET"
+    });
+
+    if (!response.ok) {
+      throw new Error("فشل الطلب");
+    }
+
+    console.error(response);
+    const data = await response; // إذا كانت الاستجابة JSON
+    console.log("النتيجة:", data); // أو data.result إذا كانت مغلفة
+  } catch (error) {
+    console.error("خطأ:", error);
+  }
+}
+
+// getLocalOpen();
+
+//
+async function fetchData() {
+  console.log("Before Fetch");
+  try {
+    // if try worked do somthing
+    let myData = await fetch("http://apidemo.runasp.net/api/LocalOpen");
+    console.log(await myData.json()); // الانتظار هنا مهمته مش الانتظار بس لا  وكمان بتنتج ريسولت احسن وانضف
+  } catch (reason) {
+    // if try dosen't worked do somthing else like Error
+    console.log(`Reason: ${reason}`);
+  } finally {
+    // in all do this somthing
+    console.log("After Fetch");
+  }
+}
+
+// fetchData();
+
+// let myRequest1 = new XMLHttpRequest();
+// myRequest1.open("GET", "http://apidemo.runasp.net/api/LocalOpen");
+// myRequest1.send();
+// myRequest1.onreadystatechange = function () {
+//   if (this.readyState === 4 && this.status === 200) {
+//     console.log(this.responseText);
+//     let jsData = JSON.parse(this.responseText);
+//     console.log(jsData);
+//     console.log(Array.isArray(jsData)); // itis Array
+//   }
+// };
+
+//
+
+function trying() {
+  async function updateBoolValue(newValue) {
+    try {
+      const response = await fetch(
+        "http://apidemo.runasp.net/api/LocalOpen/true",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ value: newValue })
+        }
+      );
+
+      if (response.ok) {
+        console.log("تم تحديث القيمة بنجاح!");
+      } else {
+        console.log("فشل الطلب: ", response.status);
+      }
+    } catch (error) {
+      console.log("حدث خطأ: ", error.message);
+    }
+  }
+
+  // مثال على الاستخدام
+  updateBoolValue(true); // يمكنك تغيير القيمة إلى false
+}
+
+// trying ()
