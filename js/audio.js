@@ -167,7 +167,9 @@ function controlSize() {
     down = false;
   }
 }
-// http://apidemo.runasp.net/api/LocalOpen
+//
+//
+//
 // contact with Api LocalOpen
 async function getLocalOpen() {
   try {
@@ -187,7 +189,7 @@ async function getLocalOpen() {
   }
 }
 
-// getLocalOpen();
+getLocalOpen();
 
 //
 async function fetchData() {
@@ -195,6 +197,7 @@ async function fetchData() {
   try {
     // if try worked do somthing
     let myData = await fetch("http://apidemo.runasp.net/api/LocalOpen");
+    console.log(await myData); // الانتظار هنا مهمته مش الانتظار بس لا  وكمان بتنتج ريسولت احسن وانضف
     console.log(await myData.json()); // الانتظار هنا مهمته مش الانتظار بس لا  وكمان بتنتج ريسولت احسن وانضف
   } catch (reason) {
     // if try dosen't worked do somthing else like Error
@@ -205,21 +208,7 @@ async function fetchData() {
   }
 }
 
-// fetchData();
-
-// let myRequest1 = new XMLHttpRequest();
-// myRequest1.open("GET", "http://apidemo.runasp.net/api/LocalOpen");
-// myRequest1.send();
-// myRequest1.onreadystatechange = function () {
-//   if (this.readyState === 4 && this.status === 200) {
-//     console.log(this.responseText);
-//     let jsData = JSON.parse(this.responseText);
-//     console.log(jsData);
-//     console.log(Array.isArray(jsData)); // itis Array
-//   }
-// };
-
-//
+fetchData();
 
 function trying() {
   async function updateBoolValue(newValue) {
@@ -227,11 +216,7 @@ function trying() {
       const response = await fetch(
         "http://apidemo.runasp.net/api/LocalOpen/true",
         {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ value: newValue })
+          method: "PUT"
         }
       );
 
@@ -249,4 +234,4 @@ function trying() {
   updateBoolValue(true); // يمكنك تغيير القيمة إلى false
 }
 
-// trying ()
+trying();
