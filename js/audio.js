@@ -1,4 +1,3 @@
-console.log(allRecord[1]);
 // var
 // for show table records br arrow
 const player = document.querySelector(".player");
@@ -10,12 +9,41 @@ let range = document.querySelector(".record input");
 let pauseBtn = document.querySelector(".play-pause");
 let nextBtn = document.getElementById("next");
 let prevBtn = document.getElementById("prev");
-
 // rules
 let index = 0;
 let audioPlay = false;
+
+// Pattern for extracting Arabic letters
+const arabicPattern = /[\u0600-\u06FF]+/g; // will use in func load and table of recor
+
+// start rules
+// contact with Api to get records data
+async function getRecords() {
+  try {
+    const response = await fetch("http://apidemo.runasp.net/api/Upload/2", {
+      method: "GET"
+    });
+
+    if (!response.ok) {
+      throw new Error("فشل الطلب");
+    }
+
+    console.log(response);
+    // console.error(response);
+    const data = await response.json();
+    console.log("النتيجة:", data);
+    allRecord = data;
+    // استدعاء loadMusic بعد جلب البيانات
+    loadMusic();
+    loadTable(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+// End rules
+
 // giv src and name
-window.addEventListener("load", loadMusic);
+window.addEventListener("load", getRecords);
 //
 pauseBtn.addEventListener("click", playing);
 //
@@ -31,9 +59,14 @@ prevBtn.addEventListener("click", () => {
   pauseBtn.click();
 });
 
+// console.log(arabicWords);
 function loadMusic() {
-  audio.src = allRecord[index].src;
-  h3.innerHTML = allRecord[index].name;
+  audio.src = allRecord[index].fileLink;
+  // giv name to title record
+  let namFromLink = allRecord[index].fileLink;
+  const arabicWords = namFromLink.match(arabicPattern);
+  console.log("Pattern", arabicWords[0]); // will back
+  h3.innerHTML = arabicWords;
 }
 //
 function playing() {
@@ -66,7 +99,7 @@ function prevRecord() {
   playing();
 }
 
-console.log(index);
+// table
 
 // // Time
 audio.addEventListener("timeupdate", (e) => {
@@ -170,68 +203,59 @@ function controlSize() {
 //
 //
 //
-// contact with Api LocalOpen
-async function getLocalOpen() {
+//
+// start Table Of Records
+function loadTable(e) {
+  let tbody = document.querySelector(".table tbody");
+  const subjecName = document.createElement("p");
+  subjecName.className = "subjecName";
+  subjecName.innerText = "administrative";
+  tbody.appendChild(subjecName);
+  for (rec of e) {
+    console.log(rec);
+    let tr = document.createElement("tr");
+    let tdRec = document.createElement("td");
+    let tdName = document.createElement("td");
+    tdRec.innerText = "Dr.Shimaa";
+    // tdName.innerText = arabicWords;
+    // edit Code
+    let namFromLink = rec.fileLink;
+    const arabicWords = namFromLink.match(arabicPattern);
+    console.log("Pattern", arabicWords[0]); // will back
+    tdName.innerText = arabicWords;
+    //
+    tr.appendChild(tdRec);
+    tr.appendChild(tdName);
+    tbody.appendChild(tr);
+  }
+}
+// end  Table Of Records
+//
+//
+//
+
+// contact with Api to update LocalOpen
+async function updateBoolValue() {
+  console.log("Before Fetch");
   try {
-    const response = await fetch("http://apidemo.runasp.net/api/LocalOpen", {
-      method: "GET"
-    });
+    const response = await fetch(
+      "http://apidemo.runasp.net/api/LocalOpen/false",
+      {
+        method: "PUT"
+      }
+    );
 
     if (!response.ok) {
       throw new Error("فشل الطلب");
     }
 
-    console.error(response);
+    console.log(response);
+    // console.error(response);
     const data = await response; // إذا كانت الاستجابة JSON
     console.log("النتيجة:", data); // أو data.result إذا كانت مغلفة
   } catch (error) {
-    console.error("خطأ:", error);
+    console.log(error);
   }
 }
 
-getLocalOpen();
-
-//
-async function fetchData() {
-  console.log("Before Fetch");
-  try {
-    // if try worked do somthing
-    let myData = await fetch("http://apidemo.runasp.net/api/LocalOpen");
-    console.log(await myData); // الانتظار هنا مهمته مش الانتظار بس لا  وكمان بتنتج ريسولت احسن وانضف
-    console.log(await myData.json()); // الانتظار هنا مهمته مش الانتظار بس لا  وكمان بتنتج ريسولت احسن وانضف
-  } catch (reason) {
-    // if try dosen't worked do somthing else like Error
-    console.log(`Reason: ${reason}`);
-  } finally {
-    // in all do this somthing
-    console.log("After Fetch");
-  }
-}
-
-fetchData();
-
-function trying() {
-  async function updateBoolValue(newValue) {
-    try {
-      const response = await fetch(
-        "http://apidemo.runasp.net/api/LocalOpen/true",
-        {
-          method: "PUT"
-        }
-      );
-
-      if (response.ok) {
-        console.log("تم تحديث القيمة بنجاح!");
-      } else {
-        console.log("فشل الطلب: ", response.status);
-      }
-    } catch (error) {
-      console.log("حدث خطأ: ", error.message);
-    }
-  }
-
-  // مثال على الاستخدام
-  updateBoolValue(true); // يمكنك تغيير القيمة إلى false
-}
-
-trying();
+updateBoolValue();

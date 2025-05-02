@@ -7,17 +7,39 @@ let send = document.querySelector(".form button");
 
 const localStor = false;
 
+// start the door to go in records page
+// contact with Api LocalOpen
+async function getLocalOpen() {
+  // debugger;
+  try {
+    const response = await fetch("http://apidemo.runasp.net/api/LocalOpen", {
+      method: "GET"
+    });
+
+    if (!response.ok) {
+      throw new Error("فشل الطلب");
+    }
+
+    console.log(response);
+    // console.error(response);
+    const data = await response.json(); // إذا كانت الاستجابة JSON
+    console.log("النتيجة:", data);
+    localStor = data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getLocalOpen();
+
 if (localStor == true) {
   window.localStorage.setItem("email", "Shamekh1@gmail");
   window.localStorage.setItem("pass", "Shamekh@10c");
 }
 
-// gitenig from local
+// gitenig email, pass from local to check
 let storEmail = window.localStorage.getItem("email");
 let storPass = window.localStorage.getItem("pass");
-
-console.log(email.innerText);
-console.log(pass);
 
 // put the values
 function putt(Email, password) {
@@ -38,35 +60,4 @@ send.addEventListener("click", () => {
     console.log("did't loged");
   }
 });
-
-// try
-// https://github.com/Ahmed-AbdElwanes/Abd-Elwanes/blob/main/imgs/awesome-video.mp4
-// async function fetchRecord(recordId) {
-//   const response = await fetch(`https://example.com/records/record_${recordId}.json`);
-//   const data = await response.json();
-//   return data;
-// }
-
-// // استخدام الدالة
-// fetchRecord(1).then(record => console.log(record));
-
-// Table Of Records
-let tbody = document.querySelector(".table tbody");
-const subjecName = document.createElement("p");
-subjecName.className = "subjecName";
-subjecName.innerText = "administrative";
-tbody.appendChild(subjecName);
-for (rec of allRecord) {
-  console.log(rec);
-  let tr = document.createElement("tr");
-  let tdRec = document.createElement("td");
-  let tdName = document.createElement("td");
-  tdRec.innerText = rec.artist;
-  tdName.innerText = rec.name;
-
-  tr.appendChild(tdRec);
-  tr.appendChild(tdName);
-  tbody.appendChild(tr);
-}
-
-console.log(tbody);
+// End the door to go in records page
