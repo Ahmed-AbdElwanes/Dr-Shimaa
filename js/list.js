@@ -1,4 +1,4 @@
-// إعلان المتغيرات
+// var
 const player = document.querySelector(".player");
 const arrowDown = document.querySelector(".cursore");
 const audio = document.querySelector(".audio audio");
@@ -11,10 +11,10 @@ let allRecord = [];
 let index = 0;
 let audioPlay = false;
 
-// نمط لاستخراج الحروف العربية
+// Pattern for extracting Arabic letters
 const arabicPattern = /[\u0600-\u06FF]+/g;
 
-// جلب البيانات من API
+// contact with Api to get records data
 async function getRecords() {
   try {
     const response = await fetch("http://apidemo.runasp.net/api/Upload/2", {
@@ -37,7 +37,7 @@ async function getRecords() {
   }
 }
 
-// تحميل مدة التسجيلات
+// load aduio Duration
 async function loadDurations() {
   for (let i = 0; i < allRecord.length; i++) {
     if (allRecord[i].fileLink) {
@@ -52,7 +52,7 @@ async function loadDurations() {
   }
 }
 
-// دالة للحصول على مدة ملف صوتي
+// get Audio Duration
 function getAudioDuration(url) {
   return new Promise((resolve, reject) => {
     const tempAudio = new Audio(url);
@@ -80,7 +80,7 @@ function formatDuration(seconds) {
     : `${paddedMinutes}:${paddedSeconds}`;
 }
 
-// تحميل التسجيل الصوتي
+// load Music
 function loadMusic() {
   if (allRecord && allRecord[index] && allRecord[index].fileLink) {
     audio.src = allRecord[index].fileLink;
@@ -95,7 +95,7 @@ function loadMusic() {
   }
 }
 
-// تشغيل/إيقاف الصوت
+// play/stop audio
 function playing() {
   if (!audioPlay) {
     audio
@@ -116,7 +116,7 @@ function playing() {
   }
 }
 
-// التسجيل التالي
+//  next Record
 function nextRecord() {
   index = index >= allRecord.length - 1 ? 0 : index + 1;
   loadMusic();
@@ -124,7 +124,7 @@ function nextRecord() {
   playing();
 }
 
-// التسجيل السابق
+// previes Record
 function prevRecord() {
   index = index <= 0 ? allRecord.length - 1 : index - 1;
   loadMusic();
@@ -132,7 +132,7 @@ function prevRecord() {
   playing();
 }
 
-// تحميل الجدول
+//  load Table
 function loadTable(records) {
   let tbody = document.querySelector(".table tbody");
   tbody.innerHTML = ""; // إفراغ الجدول قبل التحميل
@@ -154,7 +154,7 @@ function loadTable(records) {
     const arabicWords = rec.fileLink.match(arabicPattern);
     tdName.innerText = arabicWords ? arabicWords.join(" ") : "تسجيل بدون اسم";
 
-    // زر التشغيل/الإيقاف
+    // play/stop audio in table
     const playButton = document.createElement("i");
     playButton.className = "material-icons";
     playButton.innerText = i === index && audioPlay ? "pause" : "play_arrow";
@@ -185,7 +185,7 @@ function loadTable(records) {
     tbody.appendChild(tr);
   });
 
-  // مستمع النقر للصفوف
+  // Click listener for rows
   tbody.addEventListener("click", (e) => {
     const row = e.target.closest("tr");
     if (row && row.dataset.index !== undefined && !e.target.closest("i")) {
@@ -196,7 +196,7 @@ function loadTable(records) {
     }
   });
 
-  // مستمع النقر لأزرار التشغيل
+  // Click listener for play buttons
   tbody.addEventListener("click", (e) => {
     if (e.target.tagName === "I" && e.target.dataset.index !== undefined) {
       const buttonIndex = parseInt(e.target.dataset.index);
@@ -212,7 +212,7 @@ function loadTable(records) {
   });
 }
 
-// تحديث الصف النشط في الجدول
+// Update the active row in the table
 function updateTableActiveRow() {
   const rows = document.querySelectorAll(".table tbody tr");
   rows.forEach((row, i) => {
@@ -222,7 +222,7 @@ function updateTableActiveRow() {
   updateTableAnimations();
 }
 
-// تحديث أزرار التشغيل
+// update Table Play Buttons
 function updateTablePlayButtons() {
   const playButtons = document.querySelectorAll(".table tbody i");
   playButtons.forEach((button) => {
@@ -232,7 +232,7 @@ function updateTablePlayButtons() {
   });
 }
 
-// تحديث الأنيميشن
+// ubdate animation
 function updateTableAnimations() {
   const animations = document.querySelectorAll(".table tbody .wave-animation");
   animations.forEach((animation, i) => {
@@ -240,13 +240,13 @@ function updateTableAnimations() {
   });
 }
 
-// إعداد الأحداث
+// Setting up events
 window.addEventListener("load", getRecords);
 pauseBtn.addEventListener("click", playing);
 nextBtn.addEventListener("click", nextRecord);
 prevBtn.addEventListener("click", prevRecord);
 
-// تحديث شريط التقدم
+// Update progress bar
 audio.addEventListener("timeupdate", (e) => {
   const initialTime = e.target.currentTime;
   const finalTime = e.target.duration;
@@ -257,16 +257,16 @@ audio.addEventListener("timeupdate", (e) => {
   // ubdate time in win timeupdate
   audio.addEventListener("loadeddata", timer());
 });
-// مستمع واحد لـ loadeddata
+// listener loadeddata
 audio.addEventListener("loadeddata", timer()); // to add current time aut first
 
-// شريط التمرير
+// range tape
 range.addEventListener("input", (el) => {
   const percent = el.target.value;
   audio.currentTime = (percent / 100) * audio.duration;
 });
 
-// دالة الوقت
+// Timer
 function timer() {
   let Timer = document.querySelector(".currentTime");
   let duration = audio.duration;
