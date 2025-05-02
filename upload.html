@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upload File to API</title>
+  </head>
+  <body>
+    <h2>Upload File to API</h2>
+    <form id="uploadForm">
+      <label
+        >Team ID:
+        <input type="text" name="Team" id="teamInput" value="2" required />
+      </label>
+      <br /><br />
+      <label
+        >Select File:
+        <input type="file" name="File" id="fileInput" required />
+      </label>
+      <br /><br />
+      <!-- <button type="submit">Upload</button> -->
+
+      <input type="submit" value="Upload" />
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const formData = new FormData();
+          formData.append("Team", document.getElementById("teamInput").value);
+          formData.append(
+            "File",
+            document.getElementById("fileInput").files[0]
+          );
+
+          try {
+            const response = await fetch(
+              "http://apidemo.runasp.net/api/Upload",
+              {
+                method: "POST",
+                body: formData
+              }
+            );
+
+            if (!response.ok) throw new Error("Upload failed");
+
+            const result = await response.text(); // or response.json() if your API returns JSON
+            document.getElementById("result").innerText =
+              "Upload successful: " + result;
+          } catch (error) {
+            document.getElementById("result").innerText =
+              "Error: " + error.message;
+          }
+        });
+    </script>
+
+    <!-- 
+    addition
+    -->
+    <!-- <p>You can reach Michael at:</p>
+
+    <ul>
+      <li><a href="https://example.com">Website</a></li>
+      <li><a href="mailto:m.bluth@example.com">Email</a></li>
+      <li><a href="tel:+123456789">Phone</a></li>
+    </ul> -->
+  </body>
+</html>
