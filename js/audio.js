@@ -9,7 +9,9 @@ let range = document.querySelector(".record input");
 let pauseBtn = document.querySelector(".play-pause");
 let nextBtn = document.getElementById("next");
 let prevBtn = document.getElementById("prev");
+
 // rules
+let allRecord = [];
 let index = 0;
 let audioPlay = false;
 
@@ -40,6 +42,7 @@ async function getRecords() {
     console.log(error);
   }
 }
+
 // End rules
 
 // giv src and name

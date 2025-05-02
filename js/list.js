@@ -1,26 +1,320 @@
-let allRecord = [
-  {
-    name: "اداري 1",
-    artist: "Dr.Shimaa",
-    img: "images/4.jpg",
-    src: "./records/1.m4a"
-  },
-  {
-    name: "اداري 2",
-    artist: "Dr.Shimaa",
-    img: "images/2.jpg",
-    src: "./records/2.m4a"
-  },
-  {
-    name: "اداري 3",
-    artist: "Dr.Shimaa",
-    img: "images/1.jpg",
-    src: "./records/3.m4a"
+// إعلان المتغيرات
+const player = document.querySelector(".player");
+const arrowDown = document.querySelector(".cursore");
+const audio = document.querySelector(".audio audio");
+let h3 = document.querySelector(".record h3");
+let range = document.querySelector(".record input");
+let pauseBtn = document.querySelector(".play-pause");
+let nextBtn = document.getElementById("next");
+let prevBtn = document.getElementById("prev");
+let allRecord = [];
+let index = 0;
+let audioPlay = false;
+
+// نمط لاستخراج الحروف العربية
+const arabicPattern = /[\u0600-\u06FF]+/g;
+
+// جلب البيانات من API
+async function getRecords() {
+  try {
+    const response = await fetch("http://apidemo.runasp.net/api/Upload/2", {
+      method: "GET"
+    });
+
+    if (!response.ok) {
+      throw new Error("فشل الطلب");
+    }
+
+    const data = await response.json();
+    console.log("النتيجة:", data);
+    allRecord = data;
+    await loadDurations(); // تحميل مدة التسجيلات
+    loadMusic();
+    loadTable(data);
+  } catch (error) {
+    console.error("خطأ في جلب البيانات:", error);
+    h3.innerHTML = "فشل تحميل التسجيلات";
   }
-  // {
-  //   name: "quraan2",
-  //   artist: "Third Singer",
-  //   img: "images/3.jpg",
-  //   src: "../records/4.mp3"
-  // },
-];
+}
+
+// تحميل مدة التسجيلات
+async function loadDurations() {
+  for (let i = 0; i < allRecord.length; i++) {
+    if (allRecord[i].fileLink) {
+      try {
+        const duration = await getAudioDuration(allRecord[i].fileLink);
+        allRecord[i].duration = duration; // تخزين المدة في allRecord
+      } catch (error) {
+        console.error(`خطأ في تحميل مدة التسجيل ${i}:`, error);
+        allRecord[i].duration = null; // في حالة الفشل
+      }
+    }
+  }
+}
+
+// دالة للحصول على مدة ملف صوتي
+function getAudioDuration(url) {
+  return new Promise((resolve, reject) => {
+    const tempAudio = new Audio(url);
+    tempAudio.addEventListener("loadedmetadata", () => {
+      const duration = tempAudio.duration;
+      tempAudio.remove(); // إزالة العنصر بعد الاستخدام
+      resolve(duration);
+    });
+    tempAudio.addEventListener("error", () => {
+      reject(new Error("فشل تحميل الملف الصوتي"));
+    });
+  });
+}
+
+// تنسيق المدة إلى صيغة mm:ss أو hh:mm:ss
+function formatDuration(seconds) {
+  if (!seconds || isNaN(seconds)) return "--:--";
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = Math.floor(seconds % 60);
+  const paddedMinutes = minutes < 10 ? "0" + minutes : minutes;
+  const paddedSeconds = secs < 10 ? "0" + secs : secs;
+  return hours > 0
+    ? `${hours}:${paddedMinutes}:${paddedSeconds}`
+    : `${paddedMinutes}:${paddedSeconds}`;
+}
+
+// تحميل التسجيل الصوتي
+function loadMusic() {
+  if (allRecord && allRecord[index] && allRecord[index].fileLink) {
+    audio.src = allRecord[index].fileLink;
+    const namFromLink = allRecord[index].fileLink;
+    const arabicWords = namFromLink.match(arabicPattern);
+    h3.innerHTML = arabicWords ? arabicWords.join(" ") : "تسجيل بدون اسم";
+    audio.load();
+    updateTableActiveRow();
+  } else {
+    console.error("رابط الملف غير متاح");
+    h3.innerHTML = "رابط غير متاح";
+  }
+}
+
+// تشغيل/إيقاف الصوت
+function playing() {
+  if (!audioPlay) {
+    audio
+      .play()
+      .then(() => {
+        pauseBtn.querySelector("i").innerHTML = "pause";
+        audioPlay = true;
+        updateTablePlayButtons();
+      })
+      .catch((error) => {
+        console.error("خطأ في تشغيل الصوت:", error);
+      });
+  } else {
+    audio.pause();
+    pauseBtn.querySelector("i").innerHTML = "play_arrow";
+    audioPlay = false;
+    updateTablePlayButtons();
+  }
+}
+
+// التسجيل التالي
+function nextRecord() {
+  index = index >= allRecord.length - 1 ? 0 : index + 1;
+  loadMusic();
+  audioPlay = false;
+  playing();
+}
+
+// التسجيل السابق
+function prevRecord() {
+  index = index <= 0 ? allRecord.length - 1 : index - 1;
+  loadMusic();
+  audioPlay = false;
+  playing();
+}
+
+// تحميل الجدول
+function loadTable(records) {
+  let tbody = document.querySelector(".table tbody");
+  tbody.innerHTML = ""; // إفراغ الجدول قبل التحميل
+  const subjecName = document.createElement("p");
+  subjecName.className = "subjecName";
+  subjecName.innerText = "administrative";
+  tbody.appendChild(subjecName);
+
+  records.forEach((rec, i) => {
+    let tr = document.createElement("tr");
+    tr.dataset.index = i; // تخزين الفهرس في الصف
+    let tdRec = document.createElement("td");
+    let tdName = document.createElement("td");
+    let tdPlay = document.createElement("td"); // عمود زر التشغيل
+    let tdDuration = document.createElement("td"); // عمود المدة
+    let tdAnimation = document.createElement("td"); // عمود الأنيميشن
+
+    tdRec.innerText = "Dr.Shimaa";
+    const arabicWords = rec.fileLink.match(arabicPattern);
+    tdName.innerText = arabicWords ? arabicWords.join(" ") : "تسجيل بدون اسم";
+
+    // زر التشغيل/الإيقاف
+    const playButton = document.createElement("i");
+    playButton.className = "material-icons";
+    playButton.innerText = i === index && audioPlay ? "pause" : "play_arrow";
+    playButton.dataset.index = i;
+    tdPlay.appendChild(playButton);
+
+    // مدة التسجيل
+    tdDuration.innerText = rec.duration
+      ? formatDuration(rec.duration)
+      : "--:--";
+
+    // أنيميشن موجات صوتية
+    const animationDiv = document.createElement("div");
+    animationDiv.className = "wave-animation";
+    animationDiv.style.display = i === index && audioPlay ? "block" : "none";
+    for (let j = 0; j < 3; j++) {
+      const bar = document.createElement("span");
+      animationDiv.appendChild(bar);
+    }
+    tdAnimation.appendChild(animationDiv);
+
+    tr.appendChild(tdRec);
+    tr.appendChild(tdName);
+    tr.appendChild(tdPlay);
+    tr.appendChild(tdDuration);
+    tr.appendChild(tdAnimation);
+    if (i === index) tr.classList.add("active"); // تمييز الصف الحالي
+    tbody.appendChild(tr);
+  });
+
+  // مستمع النقر للصفوف
+  tbody.addEventListener("click", (e) => {
+    const row = e.target.closest("tr");
+    if (row && row.dataset.index !== undefined && !e.target.closest("i")) {
+      index = parseInt(row.dataset.index);
+      loadMusic();
+      audioPlay = false;
+      playing();
+    }
+  });
+
+  // مستمع النقر لأزرار التشغيل
+  tbody.addEventListener("click", (e) => {
+    if (e.target.tagName === "I" && e.target.dataset.index !== undefined) {
+      const buttonIndex = parseInt(e.target.dataset.index);
+      if (buttonIndex === index) {
+        playing();
+      } else {
+        index = buttonIndex;
+        loadMusic();
+        audioPlay = false;
+        playing();
+      }
+    }
+  });
+}
+
+// تحديث الصف النشط في الجدول
+function updateTableActiveRow() {
+  const rows = document.querySelectorAll(".table tbody tr");
+  rows.forEach((row, i) => {
+    row.classList.toggle("active", parseInt(row.dataset.index) === index);
+  });
+  updateTablePlayButtons();
+  updateTableAnimations();
+}
+
+// تحديث أزرار التشغيل
+function updateTablePlayButtons() {
+  const playButtons = document.querySelectorAll(".table tbody i");
+  playButtons.forEach((button) => {
+    const buttonIndex = parseInt(button.dataset.index);
+    button.innerText =
+      buttonIndex === index && audioPlay ? "pause" : "play_arrow";
+  });
+}
+
+// تحديث الأنيميشن
+function updateTableAnimations() {
+  const animations = document.querySelectorAll(".table tbody .wave-animation");
+  animations.forEach((animation, i) => {
+    animation.style.display = i === index && audioPlay ? "block" : "none";
+  });
+}
+
+// إعداد الأحداث
+window.addEventListener("load", getRecords);
+pauseBtn.addEventListener("click", playing);
+nextBtn.addEventListener("click", nextRecord);
+prevBtn.addEventListener("click", prevRecord);
+
+// تحديث شريط التقدم
+audio.addEventListener("timeupdate", (e) => {
+  const initialTime = e.target.currentTime;
+  const finalTime = e.target.duration;
+  if (!isNaN(finalTime)) {
+    let barWidth = (initialTime / finalTime) * 100;
+    range.value = barWidth;
+  }
+  // ubdate time in win timeupdate
+  audio.addEventListener("loadeddata", timer());
+});
+// مستمع واحد لـ loadeddata
+audio.addEventListener("loadeddata", timer()); // to add current time aut first
+
+// شريط التمرير
+range.addEventListener("input", (el) => {
+  const percent = el.target.value;
+  audio.currentTime = (percent / 100) * audio.duration;
+});
+
+// دالة الوقت
+function timer() {
+  let Timer = document.querySelector(".currentTime");
+  let duration = audio.duration;
+  if (!isNaN(duration)) {
+    let finalHours = Math.floor(duration / 3600);
+    let finalMinutes = Math.floor(duration / 60);
+    let finalSeconds = Math.floor(duration % 60);
+    if (finalSeconds < 10) finalSeconds = "0" + finalSeconds;
+    if (finalMinutes < 10) finalMinutes = "0" + finalMinutes;
+    Timer.innerText = `${
+      finalHours > 0 ? finalHours + ":" : ""
+    }${finalMinutes}:${finalSeconds}`;
+
+    let currentTime = document.querySelector(".duration");
+    let current = audio.currentTime;
+    let currentHours = Math.floor(current / 3600);
+    let currentMinutes = Math.floor(current / 60);
+    let currentSeconds = Math.floor(current % 60);
+    if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
+    if (currentMinutes < 10) currentMinutes = "0" + currentMinutes;
+    currentTime.innerText = `${
+      currentHours > 0 ? currentHours + ":" : ""
+    }${currentMinutes}:${currentSeconds}`;
+  }
+}
+
+// الانتقال إلى التسجيل التالي عند انتهاء الصوت
+audio.addEventListener("ended", () => {
+  console.log("انتهى التسجيل");
+  nextBtn.click();
+});
+
+// التحكم في سرعة التشغيل
+const speedControl = document.getElementById("speedControl");
+speedControl.addEventListener("change", function () {
+  audio.playbackRate = parseFloat(this.value);
+  console.log("سرعة التشغيل:", audio.playbackRate);
+});
+
+// منع قائمة السياق
+audio.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});
+
+// التحكم في حجم المشغل
+let down = false;
+arrowDown.addEventListener("click", controlSize);
+function controlSize() {
+  player.classList = down ? "player" : "player smallPlayer";
+  down = !down;
+}
