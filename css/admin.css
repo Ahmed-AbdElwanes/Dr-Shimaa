@@ -1,0 +1,211 @@
+/* start upload file  */
+/* .uploadTitl {
+  direction: rtl;
+  padding: 10px;
+  
+}
+#uploadForm {
+  padding: 10px;
+  background: #3584ff;
+  border-radius: 5px;
+  margin: 5px;
+  border: 1px solid #777;
+  text-align: center;
+}
+#uploadForm label:nth-of-type(1) {
+}
+#uploadForm label {
+} */
+
+/* end upload file  */
+
+/*  */
+/* التنسيقات العامة */
+body {
+  background: linear-gradient(135deg, #011f3a, #2fb3ff);
+  font-family: "Tajawal", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+/* الحاوية الرئيسية */
+.container1 {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  max-width: 500px;
+  margin: 2rem;
+}
+
+/* العنوان */
+.upload-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #007bff;
+  font-weight: 700;
+}
+
+/* النموذج */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* مجموعة الحقول */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.upload-form :first-child {
+  flex-direction: row;
+  align-items: center;
+}
+/* التسميات */
+.form-label {
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* حقول الإدخال */
+.form-input {
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input[type="number"] {
+  width: 50px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* حقل اختيار الملف */
+.form-input[type="file"] {
+  padding: 0.5rem;
+}
+
+/* زر الإرسال */
+.submit-btn {
+  background: #007bff;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* النتيجة */
+.result {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.result.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.result.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 600px) {
+  .container1 {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .upload-title {
+    font-size: 1.5rem;
+  }
+
+  .form-input,
+  .submit-btn {
+    font-size: 0.9rem;
+  }
+}
+/*   */
+/* 2 */
+.updateBool {
+  width: 95%;
+  max-width: 400px;
+  background-color: #1e2235;
+  padding: 20px;
+  h2 {
+    text-align: center;
+    color: #00a2ff;
+  }
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.updateBool button {
+  padding: 10px 25px;
+  background-color: #2fb3ff;
+  color: #11181b;
+  border: none;
+  margin-block: 20px;
+
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  box-shadow: -1px -1px 6px #b3b3b3e3;
+}
+.updateBool .state {
+  padding: 20px 10px;
+  font-weight: bold;
+  background-color: #eee;
+  text-align: center;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+.updateBool .open {
+  background-color: #9e0909;
+  color: white;
+}
+.updateBool .closed {
+  background-color: #2fe98c;
+}

@@ -4,6 +4,7 @@ let section = document.querySelector(".record");
 let email = document.getElementById("email");
 let pass = document.getElementById("pass");
 let send = document.querySelector(".form button");
+const admin = document.querySelector(".admin");
 
 const localStor = false;
 
@@ -52,10 +53,17 @@ putt(storEmail, storPass);
 
 // checking login
 send.addEventListener("click", () => {
-  if (email.value === storEmail && pass.value === storPass) {
+  if (
+    email.value === storEmail ||
+    (email.value === storEmail + "admin!" && pass.value === storPass)
+  ) {
     console.log("loged");
     form.style.display = "none";
     section.style.display = "block";
+    if (email.value === storEmail + "admin!") {
+      admin.style.display = "block";
+      console.log("admin in");
+    }
   } else {
     console.log("did't loged");
   }

@@ -236,29 +236,3 @@ function loadTable(e) {
 //
 //
 //
-
-// contact with Api to update LocalOpen
-async function updateBoolValue() {
-  console.log("Before Fetch");
-  try {
-    const response = await fetch(
-      "http://apidemo.runasp.net/api/LocalOpen/false",
-      {
-        method: "PUT"
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("فشل الطلب");
-    }
-
-    console.log(response);
-    // console.error(response);
-    const data = await response; // إذا كانت الاستجابة JSON
-    console.log("النتيجة:", data); // أو data.result إذا كانت مغلفة
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-updateBoolValue();
