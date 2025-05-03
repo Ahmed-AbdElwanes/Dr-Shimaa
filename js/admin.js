@@ -11,7 +11,7 @@ document
     try {
       // ملاحظة: الخادم لا يدعم HTTPS، لذا نستخدم وكيل CORS Anywhere كحل مؤقت
       // للإنتاج، يجب تمكين HTTPS على الخادم أو استخدام وكيل مخصص (مثل Cloudflare Workers)
-      const response = await fetch("http://apidemo.runasp.net/api/Upload", {
+      const response = await fetch("https://apidemo.runasp.net/api/Upload", {
         method: "POST",
         body: formData
       });
@@ -122,7 +122,7 @@ async function getLocalOpen() {
   try {
     const response = await fetch(
       // استخدام وكيل CORS Anywhere لحل مشكلة المحتوى المختلط مؤقتًا
-      "http://apidemo.runasp.net/api/LocalOpen",
+      "https://apidemo.runasp.net/api/LocalOpen",
       {
         method: "GET"
       }
@@ -154,7 +154,7 @@ async function updateBoolValue(boolea) {
   try {
     const response = await fetch(
       // استخدام وكيل CORS Anywhere
-      `http://apidemo.runasp.net/api/LocalOpen/${boolea}`,
+      `https://apidemo.runasp.net/api/LocalOpen/${boolea}`,
       {
         method: "PUT",
         headers: {

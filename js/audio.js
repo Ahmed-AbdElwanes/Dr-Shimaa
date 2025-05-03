@@ -22,7 +22,7 @@ const arabicPattern = /[\u0600-\u06FF]+/g; // will use in func load and table of
 // contact with Api to get records data
 async function getRecords() {
   try {
-    const response = await fetch("http://apidemo.runasp.net/api/Upload/2", {
+    const response = await fetch("https://apidemo.runasp.net/api/Upload/2", {
       method: "GET"
     });
 

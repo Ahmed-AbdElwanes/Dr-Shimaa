@@ -5,15 +5,18 @@ let email = document.getElementById("email");
 let pass = document.getElementById("pass");
 let send = document.querySelector(".form button");
 const admin = document.querySelector(".admin");
+// gitenig email, pass from local to check
+// let storEmail = window.localStorage.getItem("email");
+// let storPass = window.localStorage.getItem("pass");
 
-const localStor = false;
+let localStor = false;
 
 // start the door to go in records page
 // contact with Api LocalOpen
 async function getLocalOpen() {
   // debugger;
   try {
-    const response = await fetch("http://apidemo.runasp.net/api/LocalOpen", {
+    const response = await fetch("https://apidemo.runasp.net/api/LocalOpen", {
       method: "GET"
     });
 
@@ -24,8 +27,10 @@ async function getLocalOpen() {
     console.log(response);
     // console.error(response);
     const data = await response.json(); // إذا كانت الاستجابة JSON
-    console.log("النتيجة:", data);
+    console.log("النتيجة:::", data);
     localStor = data;
+    putInLocal(data);
+    putt();
   } catch (error) {
     console.log(error);
   }
@@ -33,26 +38,31 @@ async function getLocalOpen() {
 
 getLocalOpen();
 
-if (localStor == true) {
-  window.localStorage.setItem("email", "Shamekh1@gmail");
-  window.localStorage.setItem("pass", "Shamekh@10c");
+function putInLocal() {
+  if (localStor == true) {
+    window.localStorage.setItem("email", "Shamekh1@gmail");
+    window.localStorage.setItem("pass", "Shamekh@10c");
+    console.log("putten in Local");
+  }
 }
-
-// gitenig email, pass from local to check
-let storEmail = window.localStorage.getItem("email");
-let storPass = window.localStorage.getItem("pass");
+// putInLocal();
 
 // put the values
-function putt(Email, password) {
-  console.log();
+function putt() {
+  let Email = window.localStorage.getItem("email");
+  let password = window.localStorage.getItem("pass");
+  console.log("put in inputs 1");
   email.value = Email;
   pass.value = password;
+  console.log("put in inputs 2");
 }
 
-putt(storEmail, storPass);
+putt();
 
 // checking login
 send.addEventListener("click", () => {
+  let storEmail = window.localStorage.getItem("email");
+  let storPass = window.localStorage.getItem("pass");
   if (
     email.value === storEmail ||
     (email.value === storEmail + "admin!" && pass.value === storPass)
