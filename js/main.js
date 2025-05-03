@@ -41,7 +41,7 @@ getLocalOpen();
 function putInLocal() {
   if (localStor == true) {
     window.localStorage.setItem("email", "Shamekh1@gmail");
-    window.localStorage.setItem("pass", "Shamekh@10c");
+    window.localStorage.setItem("pass", "Shamekh@10a");
     console.log("putten in Local");
   }
 }
