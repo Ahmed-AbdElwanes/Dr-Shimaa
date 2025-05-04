@@ -17,7 +17,7 @@ const arabicPattern = /[\u0600-\u06FF]+/g;
 // contact with Api to get records data
 async function getRecords() {
   try {
-    const response = await fetch("https://apidemo.runasp.net/api/Upload/2", {
+    const response = await fetch("https://apidemo.runasp.net/api/Upload/4", {
       method: "GET"
     });
 
