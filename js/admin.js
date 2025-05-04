@@ -11,6 +11,7 @@ document
     try {
       // ملاحظة: الخادم لا يدعم HTTPS، لذا نستخدم وكيل CORS Anywhere كحل مؤقت
       // للإنتاج، يجب تمكين HTTPS على الخادم أو استخدام وكيل مخصص (مثل Cloudflare Workers)
+      document.getElementById("result").innerText = "يتم الرفع الان";
       const response = await fetch("https://apidemo.runasp.net/api/Upload", {
         method: "POST",
         body: formData
