@@ -401,8 +401,10 @@ i[id="next"]:hover {
   font-weight: bold;
   text-align: center;
   color: #6b6b6b;
+  margin: 10px;
 }
 .table tr {
+  width: 100%;
   display: block;
   margin-inline: 15px;
 }

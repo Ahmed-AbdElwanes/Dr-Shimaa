@@ -318,24 +318,3 @@ function controlSize() {
   player.classList = down ? "player" : "player smallPlayer";
   down = !down;
 }
-
-// Ai mute record on
-// تعطيل الصوت عند اكتشاف محاولة تسجيل الشاشة
-const audioElements = document.querySelectorAll("audio, video");
-
-function muteAudio() {
-  audioElements.forEach((element) => {
-    element.muted = true; // كتم الصوت
-    element.pause(); // إيقاف التشغيل (اختياري)
-  });
-}
-
-// اعتراض getDisplayMedia
-if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-  const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia;
-  navigator.mediaDevices.getDisplayMedia = function () {
-    alert("تم اكتشاف محاولة تسجيل الشاشة! الصوت سيتم كتمه.");
-    muteAudio();
-    return originalGetDisplayMedia.apply(navigator.mediaDevices, arguments);
-  };
-}
