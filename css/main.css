@@ -300,10 +300,18 @@ footer .rights {
   background-color: #1a1a1a;
   border-top: 1px solid #444444;
 }
-footer .rights a {
+
+footer .contacMe > :nth-child(1) {
   color: white;
   text-shadow: 2px -1px 2px #777777;
 }
+footer .contacMe :nth-child(2) {
+  color: green;
+}
+footer .contacMe :nth-child(3) {
+  color: rgb(204, 13, 13);
+}
+
 /* end bottom footer */
 /* Animations */
 @keyframes fadeInDown {

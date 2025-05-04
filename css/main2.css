@@ -177,6 +177,8 @@ nav a:hover {
   margin-left: auto;
   margin-bottom: 10px;
   width: fit-content;
+  z-index: 1000;
+  position: relative;
 }
 .cursore i {
   color: #4ca1fc;
@@ -514,3 +516,19 @@ a.admin {
   display: none;
 }
 /* end admin link visible */
+
+/* message for students  */
+.ms {
+  position: absolute;
+  z-index: 100;
+  color: #50bdff;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  line-height: 1.3;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  display: none;
+}
+/* message for students  */
