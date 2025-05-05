@@ -125,6 +125,84 @@ nav a:hover {
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
 }
+
+/* select team */
+body {
+  /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+}
+
+.team {
+  background: #ffffff;
+  padding: 0.8rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  direction: rtl;
+}
+
+.team select {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  background: #f9f9f9;
+  color: #2c3e50;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.team select:hover {
+  background: #e8f0fe;
+  border-color: #2980b9;
+}
+
+.team select:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+  background: #ffffff;
+}
+
+.team select option {
+  padding: 0.5rem;
+  background: #ffffff;
+  color: #2c3e50;
+}
+
+/* تحسين مظهر القائمة المنسدلة عند الفتح */
+.team select::-ms-expand {
+  display: none; /* إخفاء السهم الافتراضي في IE */
+}
+
+.team select {
+  appearance: none; /* إخفاء السهم الافتراضي */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  background-size: 1.2rem;
+  padding-left: 3rem;
+}
+
+/* تنسيق الخيارات عند التمرير */
+.team select option:hover {
+  background: #3498db;
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .team {
+    padding: 1.5rem;
+  }
+
+  .team select {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}
+/* select team */
 .form button {
   width: 100%;
   background-color: #0075ff;

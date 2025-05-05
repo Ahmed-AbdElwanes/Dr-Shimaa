@@ -2,6 +2,7 @@
 const player = document.querySelector(".player");
 const arrowDown = document.querySelector(".cursore");
 const audio = document.querySelector(".audio audio");
+const selectTeam = document.querySelector(".team select");
 let h3 = document.querySelector(".record h3");
 let range = document.querySelector(".record input");
 let pauseBtn = document.querySelector(".play-pause");
@@ -10,16 +11,28 @@ let prevBtn = document.getElementById("prev");
 let allRecord = [];
 let index = 0;
 let audioPlay = false;
+let teamNum = 1;
 
 // Pattern for extracting Arabic letters
 const arabicPattern = /[\u0600-\u06FF]+/g;
 
+// get team
+selectTeam.addEventListener("input", function () {
+  console.log(selectTeam.value);
+  teamNum = selectTeam.value;
+  getRecords();
+});
+
 // contact with Api to get records data
 async function getRecords() {
   try {
-    const response = await fetch("https://apidemo.runasp.net/api/Upload/4", {
-      method: "GET"
-    });
+    const response = await fetch(
+      `https://apidemo.runasp.net/api/Upload/${teamNum}`,
+      {
+        method: "GET"
+      }
+    );
+    console.log(teamNum);
 
     if (!response.ok) {
       throw new Error("فشل الطلب");
