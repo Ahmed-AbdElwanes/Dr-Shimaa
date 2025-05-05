@@ -158,6 +158,52 @@
         const nav = document.querySelector("nav");
         nav.classList.toggle("active");
       }
+      function blockDevTool() {
+        // block dev tools
+        document.addEventListener("contextmenu", function (event) {
+          event.preventDefault(); // منع القائمة الافتراضية من الظهور
+          alert("الضغط بالزر الأيمن ممنوع!"); // رسالة اختيارية
+        });
+        document.addEventListener("keydown", function (event) {
+          // منع Ctrl + Shift + I
+          if (event.ctrlKey && event.shiftKey && event.key === "I") {
+            event.preventDefault();
+            alert("فتح أدوات المطورين ممنوع!");
+          }
+
+          // منع Ctrl + Shift + C
+          if (event.ctrlKey && event.shiftKey && event.key === "C") {
+            event.preventDefault();
+            alert("فحص العناصر ممنوع!");
+          }
+
+          // منع Ctrl + Shift + J
+          if (event.ctrlKey && event.shiftKey && event.key === "J") {
+            event.preventDefault();
+            alert("فتح وحدة التحكم ممنوع!");
+          }
+
+          // منع F12
+          if (event.key === "F12") {
+            event.preventDefault();
+            alert("فتح أدوات المطورين ممنوع!");
+          }
+
+          // منع Cmd + Option + I (لنظام Mac)
+          if (event.metaKey && event.altKey && event.key === "i") {
+            event.preventDefault();
+            alert("فتح أدوات المطورين ممنوع!");
+          }
+
+          // منع Cmd + Option + C (لنظام Mac)
+          if (event.metaKey && event.altKey && event.key === "c") {
+            event.preventDefault();
+            alert("فحص العناصر ممنوع!");
+          }
+        });
+        // block dev tools
+      }
+      blockDevTool();
     </script>
   </body>
   <!-- <script src="js/list.js"></script> -->
