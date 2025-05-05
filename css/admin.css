@@ -132,6 +132,25 @@ input[type="number"] {
   text-align: center;
 }
 
+/* تنسيق السبينر */
+.result i {
+  color: #145991;
+  font-size: 20px;
+  margin: 10px;
+  animation: spin 1.5s linear infinite;
+  -webkit-animation: spin 1.5s linear infinite;
+}
+
+/* إنشاء الرسم المتحرك للدوران */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* البداية */
+  }
+  100% {
+    transform: rotate(360deg); /* نهاية الدوران (دورة كاملة) */
+  }
+}
+
 .result.success {
   background: #d4edda;
   color: #155724;
