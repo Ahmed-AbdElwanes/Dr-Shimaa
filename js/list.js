@@ -14,7 +14,8 @@ let audioPlay = false;
 let teamNum = 1;
 
 // Pattern for extracting Arabic letters
-const arabicPattern = /[\u0600-\u06FF]+/g;
+const arabicPattern = /[\u0600-\u06FF]+/g; // for characters
+const arabicPattern2 = /[\u0600-\u065F\u066E-\u06FF]+/g; // without nums
 
 // get team
 selectTeam.addEventListener("input", function () {
@@ -149,9 +150,11 @@ function prevRecord() {
 function loadTable(records) {
   let tbody = document.querySelector(".table tbody");
   tbody.innerHTML = ""; // إفراغ الجدول قبل التحميل
-  const subjecName = document.createElement("p");
+  let subjecName = document.createElement("p");
   subjecName.className = "subjecName";
-  subjecName.innerText = "بحري وجوي";
+  let arabicWords = records[0].fileLink.match(arabicPattern2);
+  subjecName.innerText = arabicWords ? arabicWords.join(" ") : "تسجيل بدون اسم";
+  // subjecName.innerText = "بحري وجوي";
   tbody.appendChild(subjecName);
 
   records.forEach((rec, i) => {
@@ -164,7 +167,7 @@ function loadTable(records) {
     let tdAnimation = document.createElement("td"); // عمود الأنيميشن
 
     tdRec.innerText = "Dr.Shimaa";
-    const arabicWords = rec.fileLink.match(arabicPattern);
+    let arabicWords = rec.fileLink.match(arabicPattern);
     tdName.innerText = arabicWords ? arabicWords.join(" ") : "تسجيل بدون اسم";
 
     // play/stop audio in table
