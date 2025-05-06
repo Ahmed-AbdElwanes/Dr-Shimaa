@@ -44,7 +44,7 @@ function all2() {
     });
     // block dev tools
   }
-  // blockDevTool();
+  blockDevTool();
 
   // start varaibles
   let form = document.querySelector(".form");
@@ -114,8 +114,8 @@ function all2() {
     if (
       email.value === storEmail ||
       email.value === storEmail + "admin!" ||
-      (email.value === "00000000" && pass.value === storPass) ||
-      pass.value === "========"
+      (email.value === "shimaa!!!" && pass.value === storPass) ||
+      pass.value === "pass!!!01"
     ) {
       console.log("loged");
       form.style.display = "none";
