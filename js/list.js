@@ -1,51 +1,4 @@
 function all() {
-  function blockDevTool() {
-    // block dev tools
-    document.addEventListener("contextmenu", function (event) {
-      event.preventDefault(); // منع القائمة الافتراضية من الظهور
-      alert("الضغط بالزر الأيمن ممنوع!"); // رسالة اختيارية
-    });
-    document.addEventListener("keydown", function (event) {
-      // منع Ctrl + Shift + I
-      if (event.ctrlKey && event.shiftKey && event.key === "I") {
-        event.preventDefault();
-        alert("فتح أدوات المطورين ممنوع!");
-      }
-
-      // منع Ctrl + Shift + C
-      if (event.ctrlKey && event.shiftKey && event.key === "C") {
-        event.preventDefault();
-        alert("فحص العناصر ممنوع!");
-      }
-
-      // منع Ctrl + Shift + J
-      if (event.ctrlKey && event.shiftKey && event.key === "J") {
-        event.preventDefault();
-        alert("فتح وحدة التحكم ممنوع!");
-      }
-
-      // منع F12
-      if (event.key === "F12") {
-        event.preventDefault();
-        alert("فتح أدوات المطورين ممنوع!");
-      }
-
-      // منع Cmd + Option + I (لنظام Mac)
-      if (event.metaKey && event.altKey && event.key === "i") {
-        event.preventDefault();
-        alert("فتح أدوات المطورين ممنوع!");
-      }
-
-      // منع Cmd + Option + C (لنظام Mac)
-      if (event.metaKey && event.altKey && event.key === "c") {
-        event.preventDefault();
-        alert("فحص العناصر ممنوع!");
-      }
-    });
-    // block dev tools
-  }
-  blockDevTool();
-
   // var
   const player = document.querySelector(".player");
   const arrowDown = document.querySelector(".cursore");
@@ -69,6 +22,11 @@ function all() {
   selectTeam.addEventListener("input", function () {
     console.log(selectTeam.value);
     teamNum = selectTeam.value;
+    // getRecords();
+    index = 0; // Reset index when team changes
+    audioPlay = false; // Reset play state
+    audio.pause(); // Stop any playing audio
+    pauseBtn.querySelector("i").className = "fa-solid fa-play";
     getRecords();
   });
 
@@ -163,7 +121,7 @@ function all() {
       audio
         .play()
         .then(() => {
-          pauseBtn.querySelector("i").innerHTML = "pause";
+          pauseBtn.querySelector("i").className = "fa-solid fa-pause";
           audioPlay = true;
           updateTablePlayButtons();
         })
@@ -172,7 +130,7 @@ function all() {
         });
     } else {
       audio.pause();
-      pauseBtn.querySelector("i").innerHTML = "play_arrow";
+      pauseBtn.querySelector("i").className = "fa-solid fa-play";
       audioPlay = false;
       updateTablePlayButtons();
     }
@@ -217,6 +175,8 @@ function all() {
       let tdAnimation = document.createElement("td"); // عمود الأنيميشن
 
       tdRec.innerText = "Dr.Shimaa";
+
+      // audio name
       let arabicWords = rec.fileLink.match(arabicPattern);
       tdName.innerText = arabicWords ? arabicWords.join(" ") : "تسجيل بدون اسم";
 
@@ -388,3 +348,14 @@ function all() {
   }
 }
 all();
+navigator.mediaDevices.enumerateDevices().then((devices) => {
+  // Check the connected devices
+  console.log(devices);
+  console.log("devices--------");
+});
+
+navigator.mediaDevices.addEventListener("devicechange", () => {
+  // Do whatever you need to with the devices
+  // Maybe use enumerateDevices() to see what connected
+  console.log("devicechange");
+});

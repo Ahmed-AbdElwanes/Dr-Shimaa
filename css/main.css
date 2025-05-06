@@ -291,6 +291,10 @@ footer .numbers {
   i {
     color: rgb(0, 230, 0);
   }
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
 }
 
 /* start numbers */
@@ -307,9 +311,11 @@ footer .contacMe > :nth-child(1) {
 }
 footer .contacMe :nth-child(2) {
   color: green;
+  margin-left: 7px;
 }
 footer .contacMe :nth-child(3) {
   color: rgb(204, 13, 13);
+  margin-left: 7px;
 }
 
 /* end bottom footer */

@@ -7,13 +7,13 @@
     <!-- main css file  -->
     <link rel="stylesheet" href="css/main2.css" />
     <!-- render all elements  -->
-    <link rel="stylesheet" href="css/all.min.css" />
-    <!-- file font awesome  -->
     <!-- google iocns -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!--  -->
     <link rel="stylesheet" href="css/normalize.css" />
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,7 +60,7 @@
           <option value="1">فرقة أولى</option>
           <option value="2">فرقة ثانية</option>
           <option value="3">الفرقة الثالثة</option>
-          <option value="4">الفرقة الرابعة</option>
+          <option value="4" selected>الفرقة الرابعة</option>
         </select>
       </div>
       <button>Send</button>
@@ -75,7 +75,7 @@
         <table>
           <thead>
             <tr>
-              <th>Recorde</th>
+              <th>Speaker</th>
               <th>Name</th>
             </tr>
           </thead>
@@ -126,19 +126,23 @@
         </div>
         <!-- play -->
         <div translate="no" class="playList">
-          <i id="prev" class="material-icons">skip_previous</i>
+          <!-- <i id="prev" class="material-icons">skip_previous</i> -->
+          <i id="prev" class="fa-solid fa-backward-step"></i>
           <div class="play-pause">
-            <i class="material-icons play">play_arrow</i>
+            <!-- <i class="material-icons play">play_arrow</i> -->
+            <i class="fa-solid fa-play"></i>
+            <!-- <i class="fa-solid fa-pause"></i> -->
           </div>
-          <i id="next" class="material-icons">skip_next</i>
+          <!-- <i id="next" class="material-icons">skip_next</i> -->
+          <i id="next" class="fa-solid fa-forward-step"></i>
         </div>
       </div>
     </div>
     <!-- , -->
   </body>
   <script src="js/main.js"></script>
-  <script src="js/list.js"></script>
-  <!-- <script src="js/audio.js"></script> -->
+  <!-- <script src="js/list.js"></script> -->
+  <script src="js/audio.js"></script>
   <!-- <script>
     function toggleMenu() {
       const nav = document.querySelector("nav");

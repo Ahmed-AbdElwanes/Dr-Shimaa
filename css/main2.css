@@ -410,6 +410,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .playList i {
   cursor: pointer;
+  font-size: 18px;
 }
 
 /* translate */
@@ -417,7 +418,7 @@ input[type="range"]::-moz-range-thumb {
 i[id="prev"],
 i[id="next"] {
   color: white;
-  font-size: 30px;
+  font-size: 26px;
 }
 i[id="prev"]:hover,
 i[id="next"]:hover {
@@ -471,6 +472,7 @@ i[id="next"]:hover {
 .table {
   position: absolute;
   z-index: 1;
+  overflow: hidden;
   /* top: 20px; */
 }
 .table thead {
@@ -483,6 +485,11 @@ i[id="next"]:hover {
   text-align: center;
   color: #6b6b6b;
   margin: 10px;
+}
+
+.table thead tr {
+  display: flex;
+  gap: 40px;
 }
 .table tr {
   width: 100%;
