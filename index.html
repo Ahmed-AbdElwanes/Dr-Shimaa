@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="media/head-icon.png" />
     <title>Home - Dr. Shamekh</title>
     <link rel="stylesheet" href="css/all.min.css" />
     <!-- file font awesome  -->
@@ -24,7 +25,10 @@
         <a href="#about">About Dr.</a>
         <a href="index2.html">Records</a>
       </nav>
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        ☰
+        <!-- <i class="fa-solid fa-bars"></i> -->
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -75,6 +79,21 @@
           <img src="media/system.jpg" alt="Archive" />
           <h3>Expert Curation</h3>
           <p>Every record refined by Dr. Shimaa’s expertise.</p>
+        </div>
+        <!--  -->
+        <div class="record-card">
+          <img src="media/knoledg.jpeg" alt="Archive" />
+          <h3>Knowledge of Law</h3>
+          <p>Increase your knowledge of the law with Dr. Shimaa’s.</p>
+        </div>
+        <!--  -->
+        <div class="record-card">
+          <img src="media/law-teck.jpeg" alt="Archive" />
+          <h3>Law and Technology</h3>
+          <p>
+            Technology Makes Everything easier, So Learn Easily with Advanced
+            Technology.
+          </p>
         </div>
       </div>
     </section>
@@ -152,6 +171,13 @@
       function toggleMenu() {
         const nav = document.querySelector("nav");
         nav.classList.toggle("active");
+
+        let bars = document.querySelector(".hamburger");
+        if (nav.className == "active") {
+          bars.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+        } else {
+          bars.innerHTML = `☰`;
+        }
       }
       function blockDevTool() {
         // block dev tools

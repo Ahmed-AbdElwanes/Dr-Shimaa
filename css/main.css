@@ -302,6 +302,7 @@ footer .rights {
   padding: 5px;
   background-color: #1a1a1a;
   border-top: 1px solid #444444;
+  font-size: 15px;
 }
 
 footer .contacMe > :nth-child(1) {
@@ -399,7 +400,7 @@ footer .contacMe :nth-child(3) {
     height: 200px;
   }
   footer {
-    padding: 30px 15px;
+    padding: 30px 15px 10px;
   }
 }
 

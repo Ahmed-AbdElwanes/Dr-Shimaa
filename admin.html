@@ -32,7 +32,7 @@
             type="number"
             name="Team"
             id="teamInput"
-            value="2"
+            value="1"
             max="4"
             min="1"
             required
@@ -63,7 +63,24 @@
     </div>
     <!-- end site door -->
     <!-- start delete section -->
-
+    <div class="delete">
+      <h3>حذف تسجيلات الفرق</h3>
+      <div class="delte-form">
+        <label for="teamInput-delete" class="form-label">الفرقة</label>
+        <input
+          type="number"
+          name="Team"
+          id="teamInput-delete"
+          value="4"
+          max="4"
+          min="1"
+          required
+          class="form-input"
+        />
+      </div>
+      <button id="delete">حذف</button>
+      <div class="result-delete" id="result-delete"></div>
+    </div>
     <!-- end delete section -->
     <script src="js/admin.js"></script>
   </body>
