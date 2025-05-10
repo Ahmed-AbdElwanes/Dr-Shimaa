@@ -102,6 +102,15 @@ input[type="number"] {
   padding: 0.5rem;
 }
 
+/* helper */
+.form-group .help-text {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.3;
+  padding: 4px;
+}
+/* helper */
+
 /* زر الإرسال */
 .submit-btn {
   background: #007bff;

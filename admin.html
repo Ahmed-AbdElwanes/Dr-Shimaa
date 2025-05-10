@@ -39,7 +39,7 @@
             class="form-input"
           />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="fileInput" class="form-label">اختاري ملفًا</label>
           <input
             type="file"
@@ -48,7 +48,28 @@
             required
             class="form-input"
           />
+        </div> -->
+        <div class="form-group">
+          <label for="fileInput" class="form-label">اختاري ملفًا</label>
+          <input
+            type="file"
+            name="File"
+            id="fileInput"
+            accept="audio/*"
+            required
+            class="form-input"
+          />
+          <p class="help-text">
+            تأكدي من تصدير التسجيل الصوتي من تطبيق "المذكرات الصوتية" إلى تطبيق
+            "الملفات" أولاً:
+            <br />
+            1. افتحي تطبيق "المذكرات الصوتية". <br />
+            2. اختاري التسجيل واضغطي على زر المشاركة. <br />
+            3. احفظي التسجيل في تطبيق "الملفات" (Files). <br />
+            4. ارجعي إلى هنا واختاري التسجيل من "الملفات".
+          </p>
         </div>
+
         <!-- accept="audio/*" -->
         <button type="submit" class="submit-btn">إرسال</button>
       </form>
