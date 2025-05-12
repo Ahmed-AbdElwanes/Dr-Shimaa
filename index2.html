@@ -149,4 +149,29 @@
       nav.classList.toggle("active");
     }
   </script> -->
+  <!-- <button onclick="startRecording()">ابدأ التسجيل</button>
+<button onclick="stopRecording()">إيقاف التسجيل</button>
+<audio id="audio" controls></audio>
+
+<script>
+  let mediaRecorder;
+  let recordedChunks = [];
+
+  async function startRecording() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = (e) => recordedChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(recordedChunks, { type: 'audio/m4a' });
+      const url = URL.createObjectURL(blob);
+      document.getElementById('audio').src = url;
+      // يمكنك رفع Blob إلى الخادم هنا
+    };
+    mediaRecorder.start();
+  }
+
+  function stopRecording() {
+    mediaRecorder.stop();
+  }
+</script> -->
 </html>
