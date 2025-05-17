@@ -345,3 +345,48 @@ navigator.mediaDevices.enumerateDevices().then((devices) => {
 navigator.mediaDevices.addEventListener("devicechange", () => {
   console.log("devicechange");
 });
+
+//
+
+async function getConnectedAudioDevices() {
+  try {
+    // طلب الوصول إلى الأجهزة الصوتية
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+    // الحصول على قائمة الأجهزة
+    const devices = await navigator.mediaDevices.enumerateDevices();
+
+    // تصفية الأجهزة الصوتية فقط (مخرجات ومدخلات الصوت)
+    const audioDevices = devices.filter(
+      (device) => device.kind === "audiooutput" || device.kind === "audioinput"
+    );
+
+    // طباعة تفاصيل الأجهزة في الكونسول
+    console.log("الأجهزة الصوتية المتصلة:");
+    audioDevices.forEach((device) => {
+      console.log(
+        `- النوع: ${
+          device.kind === "audiooutput"
+            ? "مخرج صوت (سماعات)"
+            : "مدخل صوت (ميكروفون)"
+        }`
+      );
+      console.log(`  الاسم: ${device.label || "غير محدد"}`);
+      console.log(`  معرف الجهاز: ${device.deviceId}`);
+      console.log("---");
+    });
+
+    // إغلاق التدفق بعد الاستخدام
+    stream.getTracks().forEach((track) => track.stop());
+
+    // إذا لم يتم العثور على أجهزة
+    if (audioDevices.length === 0) {
+      console.log("لم يتم العثور على أجهزة صوتية متصلة.");
+    }
+  } catch (error) {
+    console.error("خطأ أثناء الوصول إلى الأجهزة الصوتية:", error.message);
+  }
+}
+
+// استدعاء الدالة
+getConnectedAudioDevices();
