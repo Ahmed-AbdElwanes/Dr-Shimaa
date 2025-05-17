@@ -44,7 +44,7 @@ function all2() {
     });
     // block dev tools
   }
-  blockDevTool();
+  // blockDevTool();
 
   // start varaibles
   let form = document.querySelector(".form");
