@@ -347,7 +347,7 @@ navigator.mediaDevices.addEventListener("devicechange", () => {
 });
 
 //
-
+const allDevices = document.querySelector(".testDevice");
 async function getConnectedAudioDevices() {
   try {
     // طلب الوصول إلى الأجهزة الصوتية
@@ -374,6 +374,7 @@ async function getConnectedAudioDevices() {
       console.log(`  الاسم: ${device.label || "غير محدد"}`);
       console.log(`  معرف الجهاز: ${device.deviceId}`);
       console.log("---");
+      allDevices.value = `${device.kind}, الاسم ${device.label || "غير محدد"}`;
     });
 
     // إغلاق التدفق بعد الاستخدام
